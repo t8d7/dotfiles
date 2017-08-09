@@ -1,0 +1,15 @@
+ctrl-a for everything
+
+c or n to create new window
+tab or f to go to next window
+F to go to previous window
+1-9 to go to a specific window that's name is anywhere from 1 to 9
+n for new window
+h for horizontal split
+v for vertical split
+r for reload config
+
+Mouse can select pane, window, and text withen pane.
+Middle click pastes
+Scrolling actually scrolls through history. 
+Selecting still works to get things into clipboard.

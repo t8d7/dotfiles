@@ -1,0 +1,26 @@
+export LD_LIBRARY_PATH=:$HOME/.local/lib64/:$LD_LIBRARY_PATH
+PATH=$HOME/.local/bin:$PATH
+alias ggrf='git log --pretty --color --date=relative --graph --decorate=short --abbrev-commit --name-status'
+alias q=exit
+alias pull="git pull"
+alias commit="git commit -m"
+alias push="git push"
+alias add="git add"
+alias d=cd
+alias dl='dirs -v'
+alias :q='exit'
+alias atom=rmate
+
+alias 1="tmux select-window -t :1"
+alias 2="tmux select-window -t :2"
+alias 3="tmux select-window -t :3"
+alias 4="tmux select-window -t :4"
+alias 5="tmux select-window -t :5"
+alias 6="tmux select-window -t :6"
+alias 7="tmux select-window -t :7"
+alias 8="tmux select-window -t :8"
+alias 9="tmux select-window -t :9"
+alias n="tmux new-window"
+alias c="tmux new-window"
+alias e="tmux kill-window"
+

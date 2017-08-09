@@ -1,0 +1,15 @@
+*
+!.bashrc
+!.gitignore
+!.gitmodules
+!.tmux.conf
+!.powerline
+!.fonts
+!.zshrc
+!.oh-my-zsh
+!.vimrc
+!.aliases
+!.tmux-themepack
+!.tmux-cheatsheat
+!.putty
+!.putty/**
