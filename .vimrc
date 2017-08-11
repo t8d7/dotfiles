@@ -70,6 +70,9 @@ Bundle 'fatih/vim-go'
 Bundle 'tfnico/vim-gradle'
 " rust
 Bundle 'rust-lang/rust.vim'
+" Paste easy (sets paste and nopaste automatically)
+Bundle 'roxma/vim-paste-easy'
+
 
 if vundle_ready == 0
     echo 'Installing bundles...'
