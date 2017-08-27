@@ -24,3 +24,4 @@ alias n="tmux new-window"
 alias c="tmux new-window"
 alias e="tmux kill-window"
 
+alias gksu="gksu -g"
