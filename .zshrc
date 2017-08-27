@@ -1,6 +1,6 @@
 #if not interactive, just skip everything.. 
 #don't want customizations on a non-real shell
-if [[ $- == *i* ]]; then
+if [[ $- != *i* ]]; then
   return
 fi
 
