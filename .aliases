@@ -12,6 +12,7 @@ alias :q='exit'
 alias q=exit
 alias ggrf='git log --pretty --color --date=relative --graph --decorate=short --abbrev-commit --name-status'
 alias atom=rmate
+alias exec='exec -l'
 
 alias 1="tmux select-window -t :1"
 alias 2="tmux select-window -t :2"
