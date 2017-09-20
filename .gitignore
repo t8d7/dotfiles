@@ -13,3 +13,4 @@
 !.tmux-cheatsheat
 !.putty
 !.putty/**
+!.pylintrc
