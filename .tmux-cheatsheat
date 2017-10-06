@@ -10,6 +10,6 @@ v for vertical split
 r for reload config
 
 Mouse can select pane, window, and text withen pane.
-Middle click pastes
+Shift+right click pastes from outside of TMUX.
+Shift+left click (and drag) selects text outside of TMUX.
 Scrolling actually scrolls through history. 
-Selecting still works to get things into clipboard.
