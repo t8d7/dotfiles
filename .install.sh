@@ -10,7 +10,7 @@ NC='\033[0m' # No Color
 
 DIST=`cat /etc/*-release | grep ^ID= | tr -d ID=\"\"`
 case $DIST in
-  "ubuntu")
+  ("ubuntu"|"debian")
     echo -e "${RED}Distro is Ubuntu, using APT${NC}"
 
     # if Python
@@ -54,7 +54,7 @@ case $DIST in
     sudo yum localinstall vim80-1.0-1.x86_64.rpm
 
     # if Python
-    if rpm -q python-dev 1&>/dev/null ; then
+    if ! rpm -q python-dev 1&>/dev/null ; then
       echo -e "${RED}Installing python-devel${NC}"
       sudo yum install python-devel
     else
@@ -62,7 +62,7 @@ case $DIST in
     fi
 
     # if Zsh
-    if rpm -q zsh 1&>/dev/null ; then
+    if ! rpm -q zsh 1&>/dev/null ; then
       echo -e "${RED}Installing zsh${NC}"
       sudo yum install zsh
     else
@@ -70,7 +70,7 @@ case $DIST in
     fi
 
     # if Tmux
-    if rpm -q tmux 1&>/dev/null ; then
+    if ! rpm -q tmux 1&>/dev/null ; then
       echo -e "${RED}Installing tmux${NC}"
       sudo yum install tmux
     else
@@ -78,7 +78,7 @@ case $DIST in
     fi
 
     # if Cmake
-    if rpm -q cmake 1&>/dev/null ; then
+    if ! rpm -q cmake 1&>/dev/null ; then
       echo -e "${RED}Installing cmake${NC}"
       sudo yum install cmake
     else
@@ -106,8 +106,8 @@ echo -e "${RED}Running font installation script${NC}"
 echo -e "${RED}Running vundle install (silently)${NC}"
 if [ -e "/usr/bin/vim80" ]; then
   alias vim=vim80
-  echo "alias vim=vim80" > ~/.zshextras
-  echo "alias vi=vim80" > ~/.zshextras
+  echo "alias vim=vim80" >> ~/.zshextras
+  echo "alias vi=vim80" >> ~/.zshextras
 fi
 vim +PluginInstall +qall #&>/dev/null
 
