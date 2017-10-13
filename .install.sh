@@ -49,12 +49,17 @@ case $DIST in
 
   ("rhel"|"centos")
     echo -e "${RED}Distro is RHEL, using yum${NC}"
-    echo -e "${RED}Downloading and installing Vim80 rpm from my site${NC}"
-    wget https://tommydrum.me/vim80-1.0-1.x86_64.rpm
-    sudo yum localinstall vim80-1.0-1.x86_64.rpm
+
+    # if Vim80
+    if [ ! -e "/usr/bin/vim80" ]; then
+      echo -e "${RED}Downloading and installing Vim80 rpm from my site${NC}"
+      wget https://tommydrum.me/vim80-1.0-1.x86_64.rpm
+      sudo yum localinstall vim80-1.0-1.x86_64.rpm
+    fi
 
     # if Python
-    if ! rpm -q python-dev 1&>/dev/null ; then
+    rpm -q python-devel
+    if [ $? -eq 1 ] ; then
       echo -e "${RED}Installing python-devel${NC}"
       sudo yum install python-devel
     else
@@ -62,7 +67,8 @@ case $DIST in
     fi
 
     # if Zsh
-    if ! rpm -q zsh 1&>/dev/null ; then
+    rpm -q zsh
+    if [ $? -eq 1 ] ; then
       echo -e "${RED}Installing zsh${NC}"
       sudo yum install zsh
     else
@@ -70,7 +76,8 @@ case $DIST in
     fi
 
     # if Tmux
-    if ! rpm -q tmux 1&>/dev/null ; then
+    rpm -q tmux
+    if [ $? -eq 1 ] ; then
       echo -e "${RED}Installing tmux${NC}"
       sudo yum install tmux
     else
@@ -78,7 +85,8 @@ case $DIST in
     fi
 
     # if Cmake
-    if ! rpm -q cmake 1&>/dev/null ; then
+    rpm -q cmake
+    if [ $? -eq 1 ] ; then
       echo -e "${RED}Installing cmake${NC}"
       sudo yum install cmake
     else
@@ -100,17 +108,24 @@ if [ ! "${HOME}" == ${PWD} ]; then
   shopt -u dotglob
 fi
 
+# .fonts installation
 echo -e "${RED}Running font installation script${NC}"
 ~/.fonts/install.sh
 
+# vim80 alias installation and setting AND vundle install
 echo -e "${RED}Running vundle install (silently)${NC}"
 if [ -e "/usr/bin/vim80" ]; then
-  alias vim=vim80
   echo "alias vim=vim80" >> ~/.zshextras
   echo "alias vi=vim80" >> ~/.zshextras
+  /usr/bin/vim80 +PluginInstall +qall
+else
+  vim +PluginInstall +qall
 fi
-vim +PluginInstall +qall #&>/dev/null
 
+# Vundle installation
+
+
+# YouComleteMe Installation
 echo -e "${RED}Compiling YouCompleteMe ycmd${NC}"
 sh ~/.vim/bundle/YouCompleteMe/install.sh
 
