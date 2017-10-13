@@ -104,6 +104,9 @@ echo -e "${RED}Running font installation script${NC}"
 ~/.fonts/install.sh
 
 echo -e "${RED}Running vundle install (silently)${NC}"
+if [ -e "/usr/bin/vim80" ]; then
+  alias vim=vim80
+fi
 vim +PluginInstall +qall #&>/dev/null
 
 echo -e "${RED}Compiling YouCompleteMe ycmd${NC}"
