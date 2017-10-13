@@ -38,7 +38,7 @@ case $DIST in
     fi
     ;;
 
-  "rhel")
+  ("rhel"|"centos")
     echo -e "${RED}Distro is RHEL, using yum${NC}"
 
     # if Python
