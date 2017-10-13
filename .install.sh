@@ -36,13 +36,25 @@ case $DIST in
     else
       echo -e "${RED}tmux is installed${NC}"
     fi
+
+    # if Cmake
+    if [ "`/usr/bin/dpkg-query --show --showformat='${db:Status-Status}\n' 'cmake'`" == "not-installed" ]; then
+      echo -e "${RED}Installings cmake${NC}"
+      sudo apt-get install cmake
+    else
+      echo -e "${RED}cmake is installed${NC}"
+    fi
+
     ;;
 
   ("rhel"|"centos")
     echo -e "${RED}Distro is RHEL, using yum${NC}"
+    echo -e "${RED}Downloading and installing Vim80 rpm from my site${NC}"
+    wget https://tommydrum.me/vim80-1.0-1.x86_64.rpm
+    sudo yum localinstall vim80-1.0-1.x86_64.rpm
 
     # if Python
-    if [ `rpm -q python-dev 1&>/dev/null` ]; then
+    if rpm -q python-dev 1&>/dev/null ; then
       echo -e "${RED}Installing python-devel${NC}"
       sudo yum install python-devel
     else
@@ -50,7 +62,7 @@ case $DIST in
     fi
 
     # if Zsh
-    if [ `rpm -q zsh 1&>/dev/null` ]; then
+    if rpm -q zsh 1&>/dev/null ; then
       echo -e "${RED}Installing zsh${NC}"
       sudo yum install zsh
     else
@@ -58,12 +70,21 @@ case $DIST in
     fi
 
     # if Tmux
-    if [ `rpm -q tmux 1&>/dev/null` ]; then
+    if rpm -q tmux 1&>/dev/null ; then
       echo -e "${RED}Installing tmux${NC}"
       sudo yum install tmux
     else
       echo -e "${RED}tmux is installed${NC}"
     fi
+
+    # if Cmake
+    if rpm -q cmake 1&>/dev/null ; then
+      echo -e "${RED}Installing cmake${NC}"
+      sudo yum install cmake
+    else
+      echo -e "${RED}cmake is installed${NC}"
+    fi
+
     ;;
 
   *)
