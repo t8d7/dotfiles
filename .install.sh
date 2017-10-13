@@ -106,6 +106,8 @@ echo -e "${RED}Running font installation script${NC}"
 echo -e "${RED}Running vundle install (silently)${NC}"
 if [ -e "/usr/bin/vim80" ]; then
   alias vim=vim80
+  echo "alias vim=vim80" > ~/.zshextras
+  echo "alias vi=vim80" > ~/.zshextras
 fi
 vim +PluginInstall +qall #&>/dev/null
 
