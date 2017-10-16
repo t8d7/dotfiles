@@ -59,7 +59,7 @@ set -g display-panes-active-colour colour245
 
 # Clock mode
 set -g clock-mode-colour colour39
-set -g clock-mode-style 24
+set -g clock-mode-style 12
 
 # Message
 set -g message-bg colour39
