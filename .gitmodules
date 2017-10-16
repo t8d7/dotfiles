@@ -1,12 +1,6 @@
-[submodule ".powerline"]
-	path = .powerline
-	url = https://github.com/powerline/powerline.git
 [submodule ".fonts"]
 	path = .fonts
 	url = https://github.com/powerline/fonts.git
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/tommydrum/oh-my-zsh.git
-[submodule ".tmux-themepack"]
-	path = .tmux-themepack
-	url = https://github.com/jimeh/tmux-themepack.git
