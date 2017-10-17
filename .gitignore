@@ -5,13 +5,11 @@
 !.tmux.conf
 !.tmux
 !.tmux/**
-!.powerline
 !.fonts
 !.zshrc
 !.oh-my-zsh
 !.vimrc
 !.aliases
-!.tmux-themepack
 !.tmux-cheatsheat
 !.putty
 !.putty/**
