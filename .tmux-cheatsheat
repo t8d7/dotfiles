@@ -8,6 +8,7 @@ n for new window
 h for horizontal split
 v for vertical split
 r for reload config
+z for zooming in/out of pane (makes copy/paste easier)
 
 Mouse can select pane, window, and text withen pane.
 Shift+right click pastes from outside of TMUX.
