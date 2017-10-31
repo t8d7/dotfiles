@@ -8,5 +8,7 @@ case $- in
       *) return;;
 esac
 
-exec /bin/bash -c 'tmux -2 attach || tmux -2 new'
-# Everything after the exec will never get executed. Ever. No chance.
+# Only run tmux if tmux is not already running
+if [ -z "${TMUX}" ]; then
+  exec /bin/bash -c 'tmux -2 attach || tmux -2 new'
+fi
