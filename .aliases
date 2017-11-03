@@ -25,4 +25,4 @@ alias 8="tmux select-window -t :8"
 alias 9="tmux select-window -t :9"
 alias n="tmux new-window"
 alias c="tmux new-window"
-alias e="tmux kill-window"
+alias e=exit
