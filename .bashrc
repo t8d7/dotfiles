@@ -8,7 +8,4 @@ case $- in
       *) return;;
 esac
 
-# Only run tmux if tmux is not already running
-if [ -z "${TMUX}" ]; then
-  exec zsh
-fi
+exec zsh

@@ -4,15 +4,6 @@ if [[ $- != *i* ]]; then
   return
 fi
 
-#if login shell, keep customizations, but not tmux. If not login shell, prob wanting tmux.
-if [ [ -o login ] || [ -v "${TMUX}"] ]; then
-  true
-elif [ -z ${TMUX} ]; then
-  exec /bin/bash -c "tmux -2 attach || tmux -2 new"
-fi
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
