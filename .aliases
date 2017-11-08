@@ -13,7 +13,7 @@ alias q=exit
 alias ggrf='git log --pretty --color --date=relative --graph --decorate=short --abbrev-commit --name-status'
 alias atom=rmate
 alias bash='bash --rcfile /dev/null --init-file /dev/null'
-alias tmux='tmux -2'
+alias tmux='tmux -2 attach || tmux -2 new'
 
 alias 1="tmux select-window -t :1"
 alias 2="tmux select-window -t :2"
