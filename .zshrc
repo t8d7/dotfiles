@@ -5,7 +5,7 @@ if [[ $- != *i* ]]; then
 fi
 
 #if login shell, keep customizations, but not tmux. If not login shell, prob wanting tmux.
-if [[ -o login ]]; then
+if [ [ -o login ] || [ -v "${TMUX}"] ]; then
   true
 elif [ -z ${TMUX} ]; then
   exec /bin/bash -c "tmux -2 attach || tmux -2 new"
