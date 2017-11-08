@@ -10,5 +10,5 @@ esac
 
 # Only run tmux if tmux is not already running
 if [ -z "${TMUX}" ]; then
-  exec /bin/bash -c 'tmux -2 attach || tmux -2 new'
+  exec zsh
 fi
