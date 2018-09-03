@@ -1,17 +1,29 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-" Bootstrap Vundle
+" Bootstrap Vundle for Windows
 let vundle_ready = 1
+if has("win32")
   if !filereadable(expand('~/.vim/bundle/vundle/README.md'))
-  let vundle_ready = 0
-  echo 'Found that Vundle is not installed. Installing...'
-  echo
-  silent !mkdir -p ~/.vim/bundle
-  silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let vundle_ready = 0
+    echo 'Found that Vundle is not installed. Installing...'
+    echo
+    silent !mkdir -p .vim/bundle
+    silent !git clone https://github.com/gmarik/vundle .vim/bundle/vundle
+  endif
+  set rtp+=.vim/bundle/vundle/
+" Boostrap Vundle for MacOS/Linux
+else
+  if !filereadable(expand('~/.vim/bundle/vundle/README.md'))
+    let vundle_ready = 0
+    echo 'Found that Vundle is not installed. Installing...'
+    echo
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+  endif
+  set rtp+=~/.vim/bundle/vundle/
 endif
 
-set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
@@ -232,7 +244,7 @@ let g:syntastic_check_on_wq = 0
 set encoding=utf-8
 
 " Windows/GVIM Specific stuff
-" colorscheme softbluev2
-" set guifont=Source_Code_Pro:h9:cANSI:qDRAFT 
-
-
+if has("win32")
+  colorscheme softbluev2
+  set guifont=Source_Code_Pro:h9:cANSI:qDRAFT
+endif
