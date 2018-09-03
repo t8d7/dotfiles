@@ -1,29 +1,17 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-" Bootstrap Vundle for Windows
+" Bootstrap Vundle
 let vundle_ready = 1
-if has("win32")
-  if !filereadable(expand('~/.vim/bundle/vundle/README.md'))
-    let vundle_ready = 0
-    echo 'Found that Vundle is not installed. Installing...'
-    echo
-    silent !mkdir -p .vim/bundle
-    silent !git clone https://github.com/gmarik/vundle .vim/bundle/vundle
-  endif
-  set rtp+=.vim/bundle/vundle/
-" Boostrap Vundle for MacOS/Linux
-else
-  if !filereadable(expand('~/.vim/bundle/vundle/README.md'))
-    let vundle_ready = 0
-    echo 'Found that Vundle is not installed. Installing...'
-    echo
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-  endif
-  set rtp+=~/.vim/bundle/vundle/
+if !filereadable(expand('$HOME/.vim/bundle/vundle/README.md'))
+  let vundle_ready = 0
+  echo 'Found that Vundle is not installed. Installing...'
+  echo
+  silent !mkdir -p $HOME/.vim/bundle
+  silent !git clone https://github.com/gmarik/vundle $HOME/.vim/bundle/vundle
 endif
 
+set rtp+=$HOME/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
@@ -51,6 +39,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
+Bundle 'OmniSharp/omnisharp-vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'Raimondi/delimitMate'
 Bundle 'godlygeek/tabular'
@@ -177,9 +166,6 @@ set modelines=5
 " set mouse=a
 set mouse=a
 
-" centralize swap files
-set directory=/tmp
-
 " permanent undo
 if has("persistent_undo")
   set undodir=expand('~/.vim/undodir/')
@@ -247,4 +233,8 @@ set encoding=utf-8
 if has("win32")
   colorscheme softbluev2
   set guifont=Source_Code_Pro:h9:cANSI:qDRAFT
+  set lines=70 columns=1000
+  set directory=$TEMP
+else
+  set directory=/tmp
 endif
