@@ -230,3 +230,9 @@ let g:syntastic_check_on_wq = 0
 
 " Most important setting IMO
 set encoding=utf-8
+
+" Windows/GVIM Specific stuff
+" colorscheme softbluev2
+" set guifont=Source_Code_Pro:h9:cANSI:qDRAFT 
+
+
