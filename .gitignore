@@ -1,13 +1,10 @@
 *
 !.bashrc
 !.gitignore
-!.gitmodules
 !.tmux.conf
 !.tmux
 !.tmux/**
-!.fonts
 !.zshrc
-!.oh-my-zsh
 !.vimrc
 !.aliases
 !.tmux-cheatsheat

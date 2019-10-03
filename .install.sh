@@ -1,7 +1,7 @@
 #!/bin/bash
 # Thomas Miller
 # Script to install prereqs for dotfiles to work correctly.
-# This ensures TMUX, ZSH, and Python is installed systemwide
+# This ensures TMUX, fish, and Python is installed systemwide
 # Also run's ~/.fonts/install.sh, vundle, and ~/.vim/bundle/YouCompleteMe/install.sh
 
 # Color variables
@@ -21,12 +21,12 @@ case $DIST in
       echo -e "${RED}python is installed${NC}"
     fi
 
-    # if Zsh
-    if [ "`/usr/bin/dpkg-query --show --showformat='${db:Status-Status}\n' 'zsh'`" == "not-installed" ]; then
-      echo -e "${RED}Installing zsh${NC}"
-      sudo apt-get install zsh
+    # if Fish
+    if [ "`/usr/bin/dpkg-query --show --showformat='${db:Status-Status}\n' 'fish'`" == "not-installed" ]; then
+      echo -e "${RED}Installing fish${NC}"
+      sudo apt-get install fish
     else
-      echo -e "${RED}zsh is installed${NC}"
+      echo -e "${RED}fish is installed${NC}"
     fi
 
     # if Tmux
@@ -66,13 +66,13 @@ case $DIST in
       echo -e "${RED}python is installed${NC}"
     fi
 
-    # if Zsh
-    rpm -q zsh
+    # if Fish
+    rpm -q fish
     if [ $? -eq 1 ] ; then
-      echo -e "${RED}Installing zsh${NC}"
-      sudo yum install zsh
+      echo -e "${RED}Installing fish${NC}"
+      sudo yum install fish
     else
-      echo -e "${RED}zsh is installed${NC}"
+      echo -e "${RED}fish is installed${NC}"
     fi
 
     # if Tmux
@@ -129,3 +129,6 @@ fi
 echo -e "${RED}Compiling YouCompleteMe ycmd${NC}"
 sh ~/.vim/bundle/YouCompleteMe/install.sh
 
+# oh-my-fish installation
+echo -e "${RED}Installing oh-my-fish${NC}"
+curl -L https://get.oh-my.fish | fish
