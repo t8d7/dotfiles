@@ -46,7 +46,6 @@ Bundle 'godlygeek/tabular'
 " markdown
 Bundle 'plasticboy/vim-markdown'
 " git
-Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
 " ruby
 Bundle 'tpope/vim-endwise'
@@ -60,7 +59,7 @@ Bundle 'tpope/vim-fireplace'
 " elixir
 Bundle 'elixir-lang/vim-elixir'
 " terraform
-Bundle 'markcornick/vim-terraform.git'
+Bundle 'hashivim/vim-terraform.git'
 " powershell
 Bundle 'PProvost/vim-ps1'
 " elm

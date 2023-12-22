@@ -2,7 +2,7 @@
 # Thomas Miller
 # Script to install prereqs for dotfiles to work correctly.
 # This ensures TMUX, fish, and Python is installed systemwide
-# Also run's ~/.fonts/install.sh, vundle, and ~/.vim/bundle/YouCompleteMe/install.sh
+# Also run's vundle and ~/.vim/bundle/YouCompleteMe/install.sh
 
 # Color variables
 RED='\033[0;31m'
@@ -47,50 +47,49 @@ case $DIST in
 
     ;;
 
-  ("rhel"|"centos")
-    echo -e "${RED}Distro is RHEL, using yum${NC}"
+  ("rhel"|"centos"|"fedora")
+    echo -e "${RED}Distro is RHEL/Fedora, checking for package manager${NC}"
 
-    # if Vim80
-    if [ ! -e "/usr/bin/vim80" ]; then
-      echo -e "${RED}Downloading and installing Vim80 rpm from my site${NC}"
-      wget https://tommydrum.me/vim80-1.0-1.x86_64.rpm
-      sudo yum localinstall vim80-1.0-1.x86_64.rpm
+    # Determine the package manager (dnf or rpm-ostree)
+    if command -v rpm-ostree &>/dev/null; then
+        PKG_MANAGER="rpm-ostree install"
+        BATCH_INSTALL=true
+    else
+        PKG_MANAGER="sudo dnf install"
+        BATCH_INSTALL=false
     fi
 
-    # if Python
-    rpm -q python-devel
-    if [ $? -eq 1 ] ; then
-      echo -e "${RED}Installing python-devel${NC}"
-      sudo yum install python-devel
-    else
-      echo -e "${RED}python is installed${NC}"
+    # Check and prepare list of packages to install
+    declare -a packages_to_install
+    if ! rpm -q vim &>/dev/null; then
+        packages_to_install+=("vim")
+    fi
+    if ! rpm -q python-devel &>/dev/null; then
+        packages_to_install+=("python-devel")
+    fi
+    if ! rpm -q fish &>/dev/null; then
+        packages_to_install+=("fish")
+    fi
+    if ! rpm -q tmux &>/dev/null; then
+        packages_to_install+=("tmux")
+    fi
+    if ! rpm -q cmake &>/dev/null; then
+        packages_to_install+=("cmake")
     fi
 
-    # if Fish
-    rpm -q fish
-    if [ $? -eq 1 ] ; then
-      echo -e "${RED}Installing fish${NC}"
-      sudo yum install fish
+    # Batch install if applicable
+    if [ "${#packages_to_install[@]}" -ne 0 ]; then
+        if [ "$BATCH_INSTALL" = true ]; then
+            echo -e "${RED}Installing packages with rpm-ostree${NC}"
+            $PKG_MANAGER "${packages_to_install[@]}"
+        else
+            for pkg in "${packages_to_install[@]}"; do
+                echo -e "${RED}Installing $pkg${NC}"
+                $PKG_MANAGER $pkg
+            done
+        fi
     else
-      echo -e "${RED}fish is installed${NC}"
-    fi
-
-    # if Tmux
-    rpm -q tmux
-    if [ $? -eq 1 ] ; then
-      echo -e "${RED}Installing tmux${NC}"
-      sudo yum install tmux
-    else
-      echo -e "${RED}tmux is installed${NC}"
-    fi
-
-    # if Cmake
-    rpm -q cmake
-    if [ $? -eq 1 ] ; then
-      echo -e "${RED}Installing cmake${NC}"
-      sudo yum install cmake
-    else
-      echo -e "${RED}cmake is installed${NC}"
+        echo -e "${RED}All necessary packages are installed${NC}"
     fi
 
     ;;
@@ -108,27 +107,26 @@ if [ ! "${HOME}" == ${PWD} ]; then
   shopt -u dotglob
 fi
 
-# .fonts installation
-echo -e "${RED}Running font installation script${NC}"
-~/.fonts/install.sh
-
-# vim80 alias installation and setting AND vundle install
+# Vundle install
 echo -e "${RED}Running vundle install (silently)${NC}"
-if [ -e "/usr/bin/vim80" ]; then
-  echo "alias vim=vim80" >> ~/.zshextras
-  echo "alias vi=vim80" >> ~/.zshextras
-  /usr/bin/vim80 +PluginInstall +qall
-else
-  vim +PluginInstall +qall
-fi
-
-# Vundle installation
-
+vim +PluginInstall +qall
 
 # YouComleteMe Installation
 echo -e "${RED}Compiling YouCompleteMe ycmd${NC}"
-sh ~/.vim/bundle/YouCompleteMe/install.sh
+python3 ~/.vim/bundle/YouCompleteMe/install.py
 
 # oh-my-fish installation
 echo -e "${RED}Installing oh-my-fish${NC}"
 curl -L https://get.oh-my.fish | fish
+
+# Install bobthefish theme using fish shell
+echo -e "${RED}Setting up bobthefish theme${NC}"
+fish -c "omf install bobthefish"
+
+# Change the default shell to fish
+if command -v fish &>/dev/null; then
+    echo -e "${RED}Changing the default shell to fish${NC}"
+    chsh -s "$(command -v fish)"
+else
+    echo -e "${RED}Fish shell is not installed, cannot change the default shell${NC}"
+fi
