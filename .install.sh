@@ -65,7 +65,7 @@ case $DIST in
         packages_to_install+=("vim")
     fi
     if ! rpm -q python-devel &>/dev/null; then
-        packages_to_install+=("python-devel")
+        packages_to_install+=("python3-devel")
     fi
     if ! rpm -q fish &>/dev/null; then
         packages_to_install+=("fish")
