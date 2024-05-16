@@ -40,7 +40,7 @@ Bundle 'tpope/vim-sensible'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'OmniSharp/omnisharp-vim'
-Bundle 'Valloric/YouCompleteMe'
+Bundle 'ycm-core/YouCompleteMe'
 Bundle 'Raimondi/delimitMate'
 Bundle 'godlygeek/tabular'
 " markdown
