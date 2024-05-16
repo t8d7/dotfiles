@@ -3,20 +3,20 @@ filetype off                   " required!
 
 " Bootstrap Vundle
 let vundle_ready = 1
-if !filereadable(expand('$HOME/.vim/bundle/vundle/README.md'))
+if !filereadable(expand('$HOME/.vim/bundle/Vundle.vim/README.md'))
   let vundle_ready = 0
   echo 'Found that Vundle is not installed. Installing...'
   echo
   silent !mkdir -p $HOME/.vim/bundle
-  silent !git clone https://github.com/gmarik/vundle $HOME/.vim/bundle/vundle
+  silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 endif
 
-set rtp+=$HOME/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=$HOME/.vim/bundle/Vundle.vim/
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Bundle 'VundleVim/Vundle.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'majutsushi/tagbar'
@@ -79,7 +79,7 @@ if vundle_ready == 0
     echo
     :BundleInstall
 endif
-
+call vundle#end()
 filetype plugin indent on     " required!
 
 " force correct backspace behavior
